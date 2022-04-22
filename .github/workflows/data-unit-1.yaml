@@ -13,8 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: black commands
-        run: echo "black commands"
+      - uses: ./.github/actions/black
 
   lint-isort:
     runs-on: ubuntu-latest
