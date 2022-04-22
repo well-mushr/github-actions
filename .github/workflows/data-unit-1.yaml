@@ -1,0 +1,79 @@
+---
+name: Data Unit 1
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - 'dags/data-unit-1/**'
+
+jobs:
+  lint-black:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: black commands
+        run: echo "black commands"
+
+  lint-isort:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: isort commands
+        run: echo "isort commands"
+
+
+  lint-flake8:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: flake8 commands
+        run: echo "flake8 commands"
+
+  yamllint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: yamllint commands
+        run: echo "yamllint commands"
+
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: pytest commands
+        run: echo "pytest commands"
+
+  docker-build:
+    runs-on: ubuntu-latest
+    needs:
+      - lint-black
+      - lint-isort
+      - lint-flake8
+      - yamllint
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: docker build
+        run: echo "docker build commands"
+
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs:
+      - docker-build
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: deploy commands
+        run: echo "deploy"
+
+
+
+
+
