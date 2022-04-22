@@ -1,0 +1,14 @@
+---
+name: Deploy
+description: 'Runs deploy commands'
+inputs:
+  enabled:  # id of input
+    description: 'Bool to skip the job'
+    required: true
+    default: 'true'
+runs:
+  using: "composite"
+  if: ${{ inputs.enabled == "true" }}
+  steps:
+    - name: deploy commands
+      run: echo "deploy commands"

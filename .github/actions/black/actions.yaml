@@ -6,9 +6,13 @@ inputs:
     description: 'Bool to skip the job'
     required: true
     default: 'true'
+  path:
+    description: "Path used as argument to black"
+    required: true
 runs:
   using: "composite"
   if: ${{ inputs.enabled == "true" }}
   steps:
-    - name: black commands
-      run: echo "black commands"
+    - uses: psf/black@stable
+      with:
+        src: ${{ inputs.path }}

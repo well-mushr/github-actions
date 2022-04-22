@@ -14,14 +14,15 @@ jobs:
       - uses: actions/checkout@v2
 
       - uses: ./.github/actions/black
+        with:
+          path: dags/data-unit-1
 
   lint-isort:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: isort commands
-        run: echo "isort commands"
+      - uses: ./.github/actions/isort
 
 
   lint-flake8:
@@ -29,24 +30,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: flake8 commands
-        run: echo "flake8 commands"
+      - uses: ./.github/actions/flake8
 
   yamllint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: yamllint commands
-        run: echo "yamllint commands"
+      - uses: ./.github/actions/yamllint
 
   unit-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: pytest commands
-        run: echo "pytest commands"
+      - uses: ./.github/actions/unit-test
 
   docker-build:
     runs-on: ubuntu-latest
@@ -58,8 +56,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: docker build
-        run: echo "docker build commands"
+      - uses: ./.github/actions/docker-build
 
   deploy:
     runs-on: ubuntu-latest
@@ -69,8 +66,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: deploy commands
-        run: echo "deploy"
+      - uses: ./.github/actions/deploy
 
 
 
