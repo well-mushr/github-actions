@@ -5,10 +5,11 @@ inputs:
   enabled:  # id of input
     description: 'Bool to skip the job'
     required: true
-    default: 'true'
+    default: true
 runs:
   using: "composite"
-  if: ${{ inputs.enabled == "true" }}
   steps:
-    - name: isort commands
+    - if: ${{ inputs.enabled == 'true' }}
+      name: isort commands
       run: echo "isort commands"
+      shell: bash

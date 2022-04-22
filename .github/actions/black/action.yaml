@@ -5,14 +5,14 @@ inputs:
   enabled:  # id of input
     description: 'Bool to skip the job'
     required: true
-    default: 'true'
+    default: true
   path:
     description: "Path used as argument to black"
-    required: true
+    required: false
 runs:
   using: "composite"
-  if: ${{ inputs.enabled == "true" }}
   steps:
-    - uses: psf/black@stable
+    - if: ${{ inputs.enabled == 'true' }}
+      uses: psf/black@stable
       with:
         src: ${{ inputs.path }}

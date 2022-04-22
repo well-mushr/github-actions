@@ -56,6 +56,7 @@ jobs:
       - lint-isort
       - lint-flake8
       - yamllint
+      - unit-test
     steps:
       - uses: actions/checkout@v2
 

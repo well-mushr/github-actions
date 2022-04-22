@@ -8,7 +8,8 @@ inputs:
     default: 'true'
 runs:
   using: "composite"
-  if: ${{ inputs.enabled == "true" }}
   steps:
-    - name: docker build commands
+    - if: ${{ inputs.enabled ==  'true' }}
+      name: docker build commands
       run: echo "docker build"
+      shell: bash
